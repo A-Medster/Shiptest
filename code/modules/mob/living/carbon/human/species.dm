@@ -1333,8 +1333,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 
 	if (H.nutrition > NUTRITION_LEVEL_FULL)
-		if(H.overeatduration < 600) //capped so people don't take forever to unfat
-			H.overeatduration++
+		H.overeatduration++
 	else
 		if(H.overeatduration > 1)
 			H.overeatduration -= 2 //doubled the unfat rate
