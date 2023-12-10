@@ -1,7 +1,7 @@
 /obj/structure/frame/computer
 	name = "computer frame"
 	icon_state = "console_frame"
-	state = 0
+	state = 1
 	base_icon_state = "console"
 	var/obj/item/stack/sheet/decon_material = /obj/item/stack/sheet/metal
 	var/built_icon = 'icons/obj/machines/computer.dmi'
@@ -10,15 +10,16 @@
 
 /obj/structure/frame/computer/attackby(obj/item/P, mob/user, params)
 	add_fingerprint(user)
+
+	if(P.tool_behaviour == TOOL_WRENCH)
+		to_chat(user, "<span class='notice'>You start [anchored ? "un" : ""]wrenching the frame...</span>")
+		if(P.use_tool(src, user, 20, volume=50))
+			to_chat(user, "<span class='notice'>You [anchored ? "un" : ""]wrench the frame.</span>")
+			set_anchored(!anchored)
+		return
+
 	switch(state)
-		if(0)
-			if(P.tool_behaviour == TOOL_WRENCH)
-				to_chat(user, "<span class='notice'>You start wrenching the frame into place...</span>")
-				if(P.use_tool(src, user, 20, volume=50))
-					to_chat(user, "<span class='notice'>You wrench the frame into place.</span>")
-					set_anchored(TRUE)
-					state = 1
-				return
+		if(1)
 			if(P.tool_behaviour == TOOL_WELDER)
 				if(!P.tool_start_check(user, amount=0))
 					return
@@ -31,14 +32,7 @@
 					dropped_sheet.add_fingerprint(user)
 					qdel(src)
 				return
-		if(1)
-			if(P.tool_behaviour == TOOL_WRENCH)
-				to_chat(user, "<span class='notice'>You start to unfasten the frame...</span>")
-				if(P.use_tool(src, user, 20, volume=50))
-					to_chat(user, "<span class='notice'>You unfasten the frame.</span>")
-					set_anchored(FALSE)
-					state = 0
-				return
+
 			if(istype(P, /obj/item/circuitboard/computer) && !circuit)
 				if(!user.transferItemToLoc(P, src))
 					return
