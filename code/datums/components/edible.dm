@@ -127,6 +127,8 @@ Behavior that's still missing from this component that original food items had t
 			eater.visible_message("<span class='notice'>[eater] hungrily [eatverb]s \the [parent].</span>", "<span class='notice'>You hungrily [eatverb] \the [parent].</span>")
 		else if(fullness > 150 && fullness < 500)
 			eater.visible_message("<span class='notice'>[eater] [eatverb]s \the [parent].</span>", "<span class='notice'>You [eatverb] \the [parent].</span>")
+		else if (HAS_TRAIT(eater, TRAIT_VORACIOUS))
+			eater.visible_message("<span class='notice'>[eater] gluttonously [eatverb]s \the [parent]!</span>", "<span class='notice'>You gluttonously [eatverb] \the [parent]!</span>")
 		else
 			eater.visible_message("<span class='notice'>[eater] unwillingly [eatverb]s a bit of \the [parent].</span>", "<span class='notice'>You unwillingly [eatverb] a bit of \the [parent].</span>")
 	else //If you're feeding it to someone else.
