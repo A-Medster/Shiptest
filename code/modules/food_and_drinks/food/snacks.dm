@@ -109,6 +109,8 @@ All foods are distributed among various categories. Use common sense.
 				user.visible_message("<span class='notice'>[user] hungrily [eatverb]s \the [src].</span>", "<span class='notice'>You hungrily [eatverb] \the [src].</span>")
 			else if(fullness > 150 && fullness < 500)
 				user.visible_message("<span class='notice'>[user] [eatverb]s \the [src].</span>", "<span class='notice'>You [eatverb] \the [src].</span>")
+			else if (HAS_TRAIT(eater, TRAIT_VORACIOUS))
+				eater.visible_message("<span class='notice'>[eater] gluttonously [eatverb]s \the [parent]!</span>", "<span class='notice'>You gluttonously [eatverb] \the [parent]!</span>")
 			else
 				user.visible_message("<span class='notice'>[user] unwillingly [eatverb]s a bit of \the [src].</span>", "<span class='notice'>You unwillingly [eatverb] a bit of \the [src].</span>")
 
