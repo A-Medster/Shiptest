@@ -3,7 +3,9 @@
 	name = "\improper Podperson"
 	id = SPECIES_POD
 	default_color = "59CE00"
-	species_traits = list(MUTCOLORS,EYECOLOR)
+	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,SCLERA)
+	mutant_bodyparts = list("tail_lizard", "face_markings", "frills", "horns", "spines", "body_markings", "legs")
+	default_features = list("mcolor" = "0F0", "tail_lizard" = "Smooth", "face_markings" = "None", "horns" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "body_size" = "Normal")
 	inherent_traits = list(TRAIT_ALWAYS_CLEAN)
 	inherent_factions = list("plants", "vines")
 	fixed_mut_color = "59CE00"
@@ -31,8 +33,8 @@
 	if(isturf(H.loc)) //else, there's considered to be no light
 		var/turf/T = H.loc
 		light_amount = min(1, T.get_lumcount()) - 0.5
-		var/sugar_amount = H.reagents.get_amount(/datum/reagent/consumable/sugar)
-		H.reagents.add_reagent(/datum/reagent/consumable/sugar, min(1, sugar_amount - 10))
+		var/sugar_amount = H.reagents.get_reagent_amount(/datum/reagent/consumable/sugar)
+		H.reagents.add_reagent(/datum/reagent/consumable/sugar, min(1, 10 - sugar_amount))
 		if(light_amount > 0.2) //if there's enough light, heal
 			H.heal_overall_damage(1,1, 0, BODYTYPE_ORGANIC)
 			H.adjustToxLoss(-1)

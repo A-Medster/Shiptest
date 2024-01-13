@@ -1334,7 +1334,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	if (H.nutrition > NUTRITION_LEVEL_FULL)
 		H.overeatduration++
-	else
+	else if (H.nutrition < NUTRITION_LEVEL_HUNGRY)
 		if(H.overeatduration > 1)
 			H.overeatduration -= 1
 
@@ -1372,6 +1372,28 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			H.throw_alert("nutrition", /atom/movable/screen/alert/hungry)
 		if(0 to NUTRITION_LEVEL_STARVING)
 			H.throw_alert("nutrition", /atom/movable/screen/alert/starving)
+
+	switch(WEIGHT_STAGE(H.overeatduration))
+		if(WEIGHT_STAGE_NORMAL)
+			H.clear_alert("weight")
+		if(WEIGHT_STAGE_FAT)
+			H.throw_alert("weight", /atom/movable/screen/alert/fat)
+		if(WEIGHT_STAGE_FATTER)
+			H.throw_alert("weight", /atom/movable/screen/alert/fatter)
+		if(WEIGHT_STAGE_VERYFAT)
+			H.throw_alert("weight", /atom/movable/screen/alert/veryfat)
+		if(WEIGHT_STAGE_OBESE)
+			H.throw_alert("weight", /atom/movable/screen/alert/obese)
+		if(WEIGHT_STAGE_MORBIDLYOBESE)
+			H.throw_alert("weight", /atom/movable/screen/alert/morbidlyobese)
+		if(WEIGHT_STAGE_EXTREMELYOBESE)
+			H.throw_alert("weight", /atom/movable/screen/alert/extremelyobese)
+		if(WEIGHT_STAGE_BARELYMOBILE)
+			H.throw_alert("weight", /atom/movable/screen/alert/barelymobile)
+		if(WEIGHT_STAGE_IMMOBILE)
+			H.throw_alert("weight", /atom/movable/screen/alert/immobile)
+		if(WEIGHT_STAGE_BLOB)
+			H.throw_alert("weight", /atom/movable/screen/alert/blob)
 
 /datum/species/proc/update_health_hud(mob/living/carbon/human/H)
 	return 0

@@ -232,6 +232,27 @@
 
 	if(nutrition < NUTRITION_LEVEL_STARVING - 50)
 		msg += "[t_He] [t_is] severely malnourished.\n"
+
+	switch(WEIGHT_STAGE(overeatduration))
+		if(WEIGHT_STAGE_FAT)
+			msg += "[t_He] [t_is] a bit chubby, showing softness in a few places.\n"
+		if(WEIGHT_STAGE_FATTER)
+			msg += "[t_He] [t_is] soft and curvy, [t_His] belly looking like a small pillow.\n"
+		if(WEIGHT_STAGE_VERYFAT)
+			msg += "[t_He] [t_is] pleasantly plushy, [t_His] body gently wobbling whenever they move.\n"
+		if(WEIGHT_STAGE_OBESE)
+			msg += "[t_He] [t_is] engorged with fat, [t_His] body laden in rolls of fattened flesh.\n"
+		if(WEIGHT_STAGE_MORBIDLYOBESE)
+			msg += "[t_He] [t_is] utterly stuffed with abundant lard, [t_He] doesn't seem to be able to move much.\n"
+		if(WEIGHT_STAGE_EXTREMELYOBESE)
+			msg += "[t_He] [t_is] ripe with numerous rolls of fat, almost all of [t_His] body layered with adipose.\n"
+		if(WEIGHT_STAGE_BARELYMOBILE)
+			msg += "[t_He] [t_is] as wide as [t_He] [t_is] tall, barely able to move [t_His] masssive body that seems to be overtaken with piles of flab.\n"
+		if(WEIGHT_STAGE_IMMOBILE)
+			msg += "[t_He] [t_is] buried in an overflowing surplus of adipose, and [t_His] legs are completely buried beneath layers of meaty, obese flesh.\n"
+		if(WEIGHT_STAGE_BLOB)
+			msg += "[t_He] [t_is] completely engulfed in rolls upon rolls of flab. [t_His] head is poking out on top of [t_His] body, akin to a marble on top of a hill.\n"
+
 	switch(disgust)
 		if(DISGUST_LEVEL_GROSS to DISGUST_LEVEL_VERYGROSS)
 			msg += "[t_He] look[p_s()] a bit grossed out.\n"
@@ -418,3 +439,7 @@
 		if(101 to INFINITY)
 			age_text = "withering away"
 	. += list(span_notice("[p_they(TRUE)] appear[p_s()] to be [age_text]."))
+
+
+	. += list(span_notice("You estimate [p_their()] weight to be about [round(150 + overeatduration, 10)]lbs."))
+

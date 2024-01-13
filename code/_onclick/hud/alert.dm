@@ -163,6 +163,50 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 
 //End gas alerts
 
+/atom/movable/screen/alert/blob
+	name = "Fatty Blob"
+	desc = "Every last piece of your corpulent body is now plush and bloated with vast rolls of blubber. Your corpulence is such that you are akin to a gigantic, towering wad of dough. Your thoughts are scattered, and the only thing in your mind is that you want to eat more and more"
+	icon_state = "blob"
+
+/atom/movable/screen/alert/immobile
+	name = "Immobile"
+	desc = "Fat has taken over your body, now colossal in size and loaded with cumbersome flab. You are completely unable to move the bulk that has set upon your body. But for whatever reason, you can't help but blush with strange fascination at every moment you're aware of your tremendous size..."
+	icon_state = "immobile"
+
+/atom/movable/screen/alert/barelymobile
+	name = "Barely Mobile"
+	desc = "Your fat legs barely allow you to waddle, continuing to slow your pace with each pound that you gain. If you continue gaining weight, you might find yourself unable to move at all."
+	icon_state = "barelymobile"
+
+/atom/movable/screen/alert/extremelyobese
+	name = "Extremely Obese"
+	desc = "In your journey through crossing further borders of obesity, your movement continues to get more and more restricted, body overcome with overwhelming amounts of adipose."
+	icon_state = "extremelyobese"
+
+/atom/movable/screen/alert/morbidlyobese
+	name = "Morbidly Obese"
+	desc = "Every inch of you is stuffed with copious amounts of fat, you feel yourself struggling to haul the heft of your body. Your thoughts wander to strange, fleeting fantasies of growing bigger yet..."
+	icon_state = "morbobese"
+
+/atom/movable/screen/alert/obese
+	name = "Obese"
+	desc = "Your body is swollen with lard, and it's challenging to move. Despite this, there's something... pleasing about being so large."
+	icon_state = "obese"
+
+/atom/movable/screen/alert/veryfat
+	name = "Very fat"
+	desc = "You're beginning to inch closer and closer to proper obesity. The way your thighs rub against each and the rumbles your stomach produces suggests that you won't remain in this state for long..."
+	icon_state = "veryfat"
+
+/atom/movable/screen/alert/fatter
+	name = "Fat"
+	desc = "Clothes begin to cling onto your frame tighter and tighter, as your body begins to display first signs of fatness. It's still no big deal, right?"
+	icon_state = "fatter"
+
+/atom/movable/screen/alert/fat
+	name = "Soft"
+	desc = "Your body's beginning to display the first signs of softened curves, though they're barely noticeable."
+	icon_state = "fat"
 
 /atom/movable/screen/alert/hungry
 	name = "Hungry"
