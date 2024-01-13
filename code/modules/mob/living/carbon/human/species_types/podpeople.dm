@@ -30,10 +30,9 @@
 	var/light_amount = 0 //how much light there is in the place, affects receiving nutrition and healing
 	if(isturf(H.loc)) //else, there's considered to be no light
 		var/turf/T = H.loc
-		light_amount = min(1,T.get_lumcount()) - 0.5
-		H.adjust_nutrition(light_amount * 10)
-		if(H.nutrition > NUTRITION_LEVEL_ALMOST_FULL)
-			H.set_nutrition(NUTRITION_LEVEL_ALMOST_FULL)
+		light_amount = min(1, T.get_lumcount()) - 0.5
+		var/sugar_amount = H.reagents.get_amount(/datum/reagent/consumable/sugar)
+		H.reagents.add_reagent(/datum/reagent/consumable/sugar, min(1, sugar_amount - 10))
 		if(light_amount > 0.2) //if there's enough light, heal
 			H.heal_overall_damage(1,1, 0, BODYTYPE_ORGANIC)
 			H.adjustToxLoss(-1)
@@ -67,7 +66,7 @@
 				H.adjustFireLoss(rand(5,15))
 				H.show_message("<span class='userdanger'>The radiation beam singes you!</span>")
 		if(/obj/projectile/energy/florayield)
-			H.set_nutrition(min(H.nutrition+30, NUTRITION_LEVEL_FULL))
+			H.reagents.add_reagent(/datum/reagent/consumable/sugar, 5)
 		if(/obj/projectile/energy/florarevolution)
 			H.show_message("<span class='notice'>The radiation beam leaves you feeling disoriented!</span>")
 			H.Dizzy(15)

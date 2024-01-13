@@ -1336,7 +1336,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		H.overeatduration++
 	else
 		if(H.overeatduration > 1)
-			H.overeatduration -= 2 //doubled the unfat rate
+			H.overeatduration -= 1
 
 	//metabolism change
 	if(H.nutrition > NUTRITION_LEVEL_FED && H.satiety > 80)
