@@ -699,7 +699,7 @@
 	if(M.nutrition <= NUTRITION_LEVEL_STARVING)
 		M.adjustToxLoss(1*REM, 0)
 	M.adjust_nutrition(-3) // making the chef more valuable, one meme trap at a time
-	M.overeatduration = 0
+	M.overeatduration -= 5
 	return ..()
 
 /datum/reagent/toxin/coniine

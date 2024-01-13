@@ -1812,7 +1812,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	if(M.nutrition <= NUTRITION_LEVEL_STARVING)
 		M.adjustToxLoss(1*REM, 0)
 	M.adjust_nutrition(-5)
-	M.overeatduration = 0
+	M.overeatduration -= 1
 	return ..()
 
 /datum/reagent/consumable/ethanol/fernet_cola
@@ -1830,7 +1830,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	if(M.nutrition <= NUTRITION_LEVEL_STARVING)
 		M.adjustToxLoss(0.5*REM, 0)
 	M.adjust_nutrition(- 3)
-	M.overeatduration = 0
+	M.overeatduration -= 1
 	return ..()
 
 /datum/reagent/consumable/ethanol/fanciulli
@@ -1847,7 +1847,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/fanciulli/on_mob_life(mob/living/carbon/M)
 	M.adjust_nutrition(-5)
-	M.overeatduration = 0
+	M.overeatduration -= 1
 	return ..()
 
 /datum/reagent/consumable/ethanol/fanciulli/on_mob_metabolize(mob/living/M)
