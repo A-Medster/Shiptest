@@ -674,6 +674,16 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	var/list/standing = list()
 
+	if(!(NO_FAT_SPRITES in species_traits) && WEIGHT_STAGE(H.overeatduration))
+		var/mutable_appearance/fat_overlay = mutable_appearance('icons/mob/belly.dmi', "belly_[WEIGHT_STAGE(H.overeatduration)]", layer = -BODY_ADJ_LAYER)
+
+		if(SKINCOLORS in species_traits)
+			fat_overlay.color = "#[(skintone2hex(H.skin_tone))]"
+		else
+			fat_overlay.color = "#[H.dna.features["mcolor"]]"
+
+		standing += fat_overlay
+
 	var/obj/item/bodypart/head/HD = H.get_bodypart(BODY_ZONE_HEAD)
 
 	if(HD && !(HAS_TRAIT(H, TRAIT_HUSK)))
@@ -728,7 +738,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					underwear_overlay.color = "#" + H.underwear_color
 				standing += underwear_overlay
 
-		if(H.undershirt)
+		if(H.undershirt && !WEIGHT_STAGE(H.overeatduration))
 			var/datum/sprite_accessory/undershirt/undershirt = GLOB.undershirt_list[H.undershirt]
 			if(undershirt)
 				var/mutable_appearance/undershirt_overlay
@@ -1331,7 +1341,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		hunger_rate *= H.physiology.hunger_mod
 		H.adjust_nutrition(-hunger_rate)
 
-
+	var/old_overeatduration = H.overeatduration
 	if (H.nutrition > NUTRITION_LEVEL_FULL)
 		H.overeatduration++
 	else if (H.nutrition < NUTRITION_LEVEL_HUNGRY)
@@ -1373,27 +1383,29 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(0 to NUTRITION_LEVEL_STARVING)
 			H.throw_alert("nutrition", /atom/movable/screen/alert/starving)
 
-	switch(WEIGHT_STAGE(H.overeatduration))
-		if(WEIGHT_STAGE_NORMAL)
-			H.clear_alert("weight")
-		if(WEIGHT_STAGE_FAT)
-			H.throw_alert("weight", /atom/movable/screen/alert/fat)
-		if(WEIGHT_STAGE_FATTER)
-			H.throw_alert("weight", /atom/movable/screen/alert/fatter)
-		if(WEIGHT_STAGE_VERYFAT)
-			H.throw_alert("weight", /atom/movable/screen/alert/veryfat)
-		if(WEIGHT_STAGE_OBESE)
-			H.throw_alert("weight", /atom/movable/screen/alert/obese)
-		if(WEIGHT_STAGE_MORBIDLYOBESE)
-			H.throw_alert("weight", /atom/movable/screen/alert/morbidlyobese)
-		if(WEIGHT_STAGE_EXTREMELYOBESE)
-			H.throw_alert("weight", /atom/movable/screen/alert/extremelyobese)
-		if(WEIGHT_STAGE_BARELYMOBILE)
-			H.throw_alert("weight", /atom/movable/screen/alert/barelymobile)
-		if(WEIGHT_STAGE_IMMOBILE)
-			H.throw_alert("weight", /atom/movable/screen/alert/immobile)
-		if(WEIGHT_STAGE_BLOB)
-			H.throw_alert("weight", /atom/movable/screen/alert/blob)
+	if(WEIGHT_STAGE(H.overeatduration) != WEIGHT_STAGE(old_overeatduration))
+		handle_body(H)
+		switch(WEIGHT_STAGE(H.overeatduration))
+			if(WEIGHT_STAGE_NORMAL)
+				H.clear_alert("weight")
+			if(WEIGHT_STAGE_FAT)
+				H.throw_alert("weight", /atom/movable/screen/alert/fat)
+			if(WEIGHT_STAGE_FATTER)
+				H.throw_alert("weight", /atom/movable/screen/alert/fatter)
+			if(WEIGHT_STAGE_VERYFAT)
+				H.throw_alert("weight", /atom/movable/screen/alert/veryfat)
+			if(WEIGHT_STAGE_OBESE)
+				H.throw_alert("weight", /atom/movable/screen/alert/obese)
+			if(WEIGHT_STAGE_MORBIDLYOBESE)
+				H.throw_alert("weight", /atom/movable/screen/alert/morbidlyobese)
+			if(WEIGHT_STAGE_EXTREMELYOBESE)
+				H.throw_alert("weight", /atom/movable/screen/alert/extremelyobese)
+			if(WEIGHT_STAGE_BARELYMOBILE)
+				H.throw_alert("weight", /atom/movable/screen/alert/barelymobile)
+			if(WEIGHT_STAGE_IMMOBILE)
+				H.throw_alert("weight", /atom/movable/screen/alert/immobile)
+			if(WEIGHT_STAGE_BLOB)
+				H.throw_alert("weight", /atom/movable/screen/alert/blob)
 
 /datum/species/proc/update_health_hud(mob/living/carbon/human/H)
 	return 0
