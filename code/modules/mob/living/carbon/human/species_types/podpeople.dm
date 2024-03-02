@@ -19,6 +19,8 @@
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	species_language_holder = /datum/language_holder/plant
 
+	belly_color = MUTCOLORS
+
 	species_chest = /obj/item/bodypart/chest/pod
 	species_head = /obj/item/bodypart/head/pod
 	species_l_arm = /obj/item/bodypart/l_arm/pod

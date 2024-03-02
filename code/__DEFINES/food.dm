@@ -53,14 +53,15 @@
 
 #define STOP_SERVING_BREAKFAST (15 MINUTES)
 
-#define WEIGHT_STAGE(weight) (round(sqrt(weight / 10)))
+#define WEIGHT_STAGE(weight) (clamp(round(sqrt(weight / 10)), 0, 9))
+#define WEIGHT_STAGE_RAW(weight) (sqrt(weight / 10))
 
 #define WEIGHT_STAGE_NORMAL 0
 #define WEIGHT_STAGE_FAT 1
 #define WEIGHT_STAGE_FATTER 2
 #define WEIGHT_STAGE_VERYFAT 3
 #define WEIGHT_STAGE_OBESE 4
-#define WEIGHT_STAGE_MORBIDLYOBESE 5
+#define WEIGHT_STAGE_VERYOBESE 5
 #define WEIGHT_STAGE_EXTREMELYOBESE 6
 #define WEIGHT_STAGE_BARELYMOBILE 7
 #define WEIGHT_STAGE_IMMOBILE 8

@@ -171,6 +171,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	///List of factions the mob gain upon gaining this species.
 	var/list/inherent_factions
 
+	var/belly_color
+
 	///Punch-specific attack verb.
 	var/attack_verb = "punch"
 	///
@@ -674,13 +676,15 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	var/list/standing = list()
 
-	if(!(NO_FAT_SPRITES in species_traits) && WEIGHT_STAGE(H.overeatduration))
+	if(belly_color && WEIGHT_STAGE(H.overeatduration) && HAS_TRAIT(H, TRAIT_VORACIOUS) && !H.w_uniform)
 		var/mutable_appearance/fat_overlay = mutable_appearance('icons/mob/belly.dmi', "belly_[WEIGHT_STAGE(H.overeatduration)]", layer = -BODY_ADJ_LAYER)
 
-		if(SKINCOLORS in species_traits)
-			fat_overlay.color = "#[(skintone2hex(H.skin_tone))]"
-		else
+		if(belly_color == MUTCOLORS)
 			fat_overlay.color = "#[H.dna.features["mcolor"]]"
+		else if(belly_color == SKINCOLORS)
+			fat_overlay.color = "#[(skintone2hex(H.skin_tone))]"
+		else if(belly_color)
+			fat_overlay.color = belly_color
 
 		standing += fat_overlay
 
@@ -750,7 +754,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					undershirt_overlay.color = "#" + H.undershirt_color
 				standing += undershirt_overlay
 
-		if(H.socks && H.num_legs >= 2 && !(NOSOCKS in species_traits))
+		if(H.socks && H.num_legs >= 2 && !(NOSOCKS in species_traits) && WEIGHT_STAGE(H.overeatduration) < 2)
 			var/datum/sprite_accessory/socks/socks = GLOB.socks_list[H.socks]
 			if(socks)
 				var/mutable_appearance/socks_overlay
@@ -1383,29 +1387,47 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(0 to NUTRITION_LEVEL_STARVING)
 			H.throw_alert("nutrition", /atom/movable/screen/alert/starving)
 
-	if(WEIGHT_STAGE(H.overeatduration) != WEIGHT_STAGE(old_overeatduration))
-		handle_body(H)
-		switch(WEIGHT_STAGE(H.overeatduration))
-			if(WEIGHT_STAGE_NORMAL)
-				H.clear_alert("weight")
-			if(WEIGHT_STAGE_FAT)
-				H.throw_alert("weight", /atom/movable/screen/alert/fat)
-			if(WEIGHT_STAGE_FATTER)
-				H.throw_alert("weight", /atom/movable/screen/alert/fatter)
-			if(WEIGHT_STAGE_VERYFAT)
-				H.throw_alert("weight", /atom/movable/screen/alert/veryfat)
-			if(WEIGHT_STAGE_OBESE)
-				H.throw_alert("weight", /atom/movable/screen/alert/obese)
-			if(WEIGHT_STAGE_MORBIDLYOBESE)
-				H.throw_alert("weight", /atom/movable/screen/alert/morbidlyobese)
-			if(WEIGHT_STAGE_EXTREMELYOBESE)
-				H.throw_alert("weight", /atom/movable/screen/alert/extremelyobese)
-			if(WEIGHT_STAGE_BARELYMOBILE)
-				H.throw_alert("weight", /atom/movable/screen/alert/barelymobile)
-			if(WEIGHT_STAGE_IMMOBILE)
-				H.throw_alert("weight", /atom/movable/screen/alert/immobile)
-			if(WEIGHT_STAGE_BLOB)
-				H.throw_alert("weight", /atom/movable/screen/alert/blob)
+	handle_fatness(H, old_overeatduration)
+
+/datum/species/proc/handle_fatness(mob/living/carbon/human/H, old_overeatduration = -1)
+	if(!HAS_TRAIT(H, TRAIT_VORACIOUS))
+		return
+
+	var/current_weight_stage = WEIGHT_STAGE(H.overeatduration)
+	var/old_weight_stage = WEIGHT_STAGE(old_overeatduration)
+
+	var/static/list/upto_text = list("You suddenly feel a bit pudgy!", "You feel even plumper!", "Your straining clothes creak quietly...", "You feel like you're getting really heavy.", "You can't help but feel your thighs rubbing together...", "You feel your belly resting heavily on your lap.", "You feel your gut wobble with each step you take.", "You feel your belly smush against the floor!", "You feel like you've become a mountain of fat!")
+	var/static/list/downfrom_text = list("The extra softness seems to have left your body.", "You feel like you've lost weight.", "You feel lighter.", "You feel a bit less fat.", "You feel a bit less fat.", "You feel a bit less fat.", "You feel less restrained by your fat.", "You can finally lift your gut off of the floor again.", "You feel like you're regained some mobility.")
+	if(current_weight_stage > old_weight_stage)
+		to_chat(H, span_warning(upto_text[current_weight_stage]))
+	else if(current_weight_stage < old_weight_stage)
+		to_chat(H, span_notice(downfrom_text[old_weight_stage]))
+	else if(!force)
+		return
+
+	H.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/fatness, multiplicative_slowdown = WEIGHT_STAGE_RAW(H.overeatduration) / 4)
+	handle_body(H)
+	switch(current_weight_stage)
+		if(WEIGHT_STAGE_NORMAL)
+			H.clear_alert("weight")
+		if(WEIGHT_STAGE_FAT)
+			H.throw_alert("weight", /atom/movable/screen/alert/fat)
+		if(WEIGHT_STAGE_FATTER)
+			H.throw_alert("weight", /atom/movable/screen/alert/fatter)
+		if(WEIGHT_STAGE_VERYFAT)
+			H.throw_alert("weight", /atom/movable/screen/alert/veryfat)
+		if(WEIGHT_STAGE_OBESE)
+			H.throw_alert("weight", /atom/movable/screen/alert/obese)
+		if(WEIGHT_STAGE_VERYOBESE)
+			H.throw_alert("weight", /atom/movable/screen/alert/veryobese)
+		if(WEIGHT_STAGE_EXTREMELYOBESE)
+			H.throw_alert("weight", /atom/movable/screen/alert/extremelyobese)
+		if(WEIGHT_STAGE_BARELYMOBILE)
+			H.throw_alert("weight", /atom/movable/screen/alert/barelymobile)
+		if(WEIGHT_STAGE_IMMOBILE)
+			H.throw_alert("weight", /atom/movable/screen/alert/immobile)
+		if(WEIGHT_STAGE_BLOB)
+			H.throw_alert("weight", /atom/movable/screen/alert/blob)
 
 /datum/species/proc/update_health_hud(mob/living/carbon/human/H)
 	return 0

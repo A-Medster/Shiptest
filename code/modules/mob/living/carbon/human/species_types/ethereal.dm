@@ -32,6 +32,8 @@
 	species_eye_path = 'icons/mob/ethereal_parts.dmi'
 	mutant_organs = list(/obj/item/organ/tail/elzu)
 
+	belly_color = MUTCOLORS
+
 	species_chest = /obj/item/bodypart/chest/ethereal
 	species_head = /obj/item/bodypart/head/ethereal
 	species_l_arm = /obj/item/bodypart/l_arm/ethereal

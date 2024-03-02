@@ -237,21 +237,21 @@
 		if(WEIGHT_STAGE_FAT)
 			msg += "[t_He] [t_is] a bit chubby, showing softness in a few places.\n"
 		if(WEIGHT_STAGE_FATTER)
-			msg += "[t_He] [t_is] soft and curvy, [t_His] belly looking like a small pillow.\n"
+			msg += "[t_He] [t_is] soft and curvy, [t_his] belly looking like a small pillow.\n"
 		if(WEIGHT_STAGE_VERYFAT)
-			msg += "[t_He] [t_is] pleasantly plushy, [t_His] body gently wobbling whenever they move.\n"
+			msg += "[t_He] [t_is] pleasantly plushy, [t_his] body gently wobbling whenever they move.\n"
 		if(WEIGHT_STAGE_OBESE)
-			msg += "[t_He] [t_is] engorged with fat, [t_His] body laden in rolls of fattened flesh.\n"
-		if(WEIGHT_STAGE_MORBIDLYOBESE)
-			msg += "[t_He] [t_is] utterly stuffed with abundant lard, [t_He] doesn't seem to be able to move much.\n"
+			msg += "[t_He] [t_is] engorged with fat, [t_his] body laden in rolls of fattened flesh.\n"
+		if(WEIGHT_STAGE_VERYOBESE)
+			msg += "[t_He] [t_is] utterly stuffed with abundant lard, [t_he] doesn't seem to be able to move much.\n"
 		if(WEIGHT_STAGE_EXTREMELYOBESE)
-			msg += "[t_He] [t_is] ripe with numerous rolls of fat, almost all of [t_His] body layered with adipose.\n"
+			msg += "[t_He] [t_is] ripe with numerous rolls of fat, almost all of [t_his] body layered with adipose.\n"
 		if(WEIGHT_STAGE_BARELYMOBILE)
-			msg += "[t_He] [t_is] as wide as [t_He] [t_is] tall, barely able to move [t_His] masssive body that seems to be overtaken with piles of flab.\n"
+			msg += "[t_He] [t_is] as wide as [t_he] [t_is] tall, barely able to move [t_his] masssive body that seems to be overtaken with piles of flab.\n"
 		if(WEIGHT_STAGE_IMMOBILE)
-			msg += "[t_He] [t_is] buried in an overflowing surplus of adipose, and [t_His] legs are completely buried beneath layers of meaty, obese flesh.\n"
+			msg += "[t_He] [t_is] buried in an overflowing surplus of adipose, and [t_his] legs are completely buried beneath layers of meaty, obese flesh.\n"
 		if(WEIGHT_STAGE_BLOB)
-			msg += "[t_He] [t_is] completely engulfed in rolls upon rolls of flab. [t_His] head is poking out on top of [t_His] body, akin to a marble on top of a hill.\n"
+			msg += "[t_He] [t_is] completely engulfed in rolls upon rolls of flab. [t_his] head is poking out on top of [t_his] body, akin to a marble on top of a hill.\n"
 
 	switch(disgust)
 		if(DISGUST_LEVEL_GROSS to DISGUST_LEVEL_VERYGROSS)

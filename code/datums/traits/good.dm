@@ -280,7 +280,7 @@
 /datum/quirk/voracious
 	name = "Voracious"
 	desc = "Nothing gets between you and your food. You eat faster and can binge on junk food! Being fat suits you just fine."
-	value = 1
+	value = 0
 	mob_traits = list(TRAIT_VORACIOUS)
 	gain_text = "<span class='notice'>You feel HONGRY.</span>"
 	lose_text = "<span class='danger'>You no longer feel HONGRY.</span>"

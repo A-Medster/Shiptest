@@ -955,6 +955,12 @@
 		return 1
 	..()
 
+/mob/living/carbon/human/vv_edit_var(var_name, var_value)
+	var/old_overeatduration = overeatduration
+	. = ..()
+	if(var_name == NAMEOF(src, overeatduration))
+		dna.species.handle_fatness(src, old_overeatduration)
+
 /mob/living/carbon/human/vv_get_dropdown()
 	. = ..()
 	VV_DROPDOWN_OPTION("", "---------")

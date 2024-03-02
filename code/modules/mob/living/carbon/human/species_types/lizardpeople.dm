@@ -28,6 +28,8 @@
 	sclera_color = "#fffec4"
 	blush_color = COLOR_BLUSH_TEAL
 
+	belly_color = MUTCOLORS
+
 	species_chest = /obj/item/bodypart/chest/lizard
 	species_head = /obj/item/bodypart/head/lizard
 	species_l_arm = /obj/item/bodypart/l_arm/lizard

@@ -183,10 +183,10 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 	desc = "In your journey through crossing further borders of obesity, your movement continues to get more and more restricted, body overcome with overwhelming amounts of adipose."
 	icon_state = "extremelyobese"
 
-/atom/movable/screen/alert/morbidlyobese
-	name = "Morbidly Obese"
+/atom/movable/screen/alert/veryobese
+	name = "Very Obese"
 	desc = "Every inch of you is stuffed with copious amounts of fat, you feel yourself struggling to haul the heft of your body. Your thoughts wander to strange, fleeting fantasies of growing bigger yet..."
-	icon_state = "morbobese"
+	icon_state = "veryobese"
 
 /atom/movable/screen/alert/obese
 	name = "Obese"

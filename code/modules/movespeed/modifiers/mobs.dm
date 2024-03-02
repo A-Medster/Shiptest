@@ -10,6 +10,9 @@
 /datum/movespeed_modifier/hunger
 	variable = TRUE
 
+/datum/movespeed_modifier/fatness
+	variable = TRUE
+
 /datum/movespeed_modifier/slaughter
 	multiplicative_slowdown = -1
 

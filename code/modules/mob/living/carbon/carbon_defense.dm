@@ -428,7 +428,26 @@
 	else if(M.zone_selected == BODY_ZONE_CHEST || M.zone_selected == BODY_ZONE_PRECISE_GROIN)			//WS Edit - Adds more help emotes
 		SEND_SIGNAL(src, COMSIG_CARBON_HUGGED, M)
 		SEND_SIGNAL(M, COMSIG_CARBON_HUG, M, src)
-		M.visible_message("<span class='notice'>[M] hugs [src] to make [p_them()] feel better!</span>", \
+		var/fat_hug_text = ""
+		switch(WEIGHT_STAGE(M.overeatduration))
+			if(WEIGHT_STAGE_FAT)
+				fat_hug_text = " [M.p_their(TRUE)] soft tummy squishes against [p_them()]."
+			if(WEIGHT_STAGE_FATTER)
+				fat_hug_text = " [M.p_their(TRUE)] large belly squishes against [p_them()]."
+			if(WEIGHT_STAGE_VERYFAT)
+				fat_hug_text = " [M.p_their(TRUE)] huge belly squishes against [p_them()]."
+			if(WEIGHT_STAGE_OBESE)
+				fat_hug_text = " [M.p_their(TRUE)] massive belly squishes against [p_them()]."
+			if(WEIGHT_STAGE_VERYOBESE)
+				fat_hug_text = " [M.p_their(TRUE)] enormous belly squishes against [p_them()]."
+			if(WEIGHT_STAGE_EXTREMELYOBESE)
+				fat_hug_text = " [p_they(TRUE)] sink into [M.p_their()] massive rolls of fat."
+			if(WEIGHT_STAGE_BARELYMOBILE)
+				fat_hug_text = " [p_they(TRUE)] enveloped by [M.p_their()] massive bulk."
+			if(WEIGHT_STAGE_BLOB)
+				fat_hug_text = " [p_they(TRUE)] enveloped by [M.p_their()] massive bulk."
+
+		M.visible_message("<span class='notice'>[M] hugs [src] to make [p_them()] feel better![fat_hug_text]</span>", \
 					"<span class='notice'>You hug [src] to make [p_them()] feel better!</span>")
 		if(istype(M.dna.species, /datum/species/moth)) //WS edit - moth dust from hugging
 			mothdust += 15;

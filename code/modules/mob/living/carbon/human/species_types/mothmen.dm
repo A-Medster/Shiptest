@@ -21,6 +21,8 @@
 	has_innate_wings = TRUE
 	deathsound = 'sound/voice/moth/moth_a.ogg'
 
+	belly_color = "#DBC18A"
+
 	species_chest = /obj/item/bodypart/chest/moth
 	species_head = /obj/item/bodypart/head/moth
 	species_l_arm = /obj/item/bodypart/l_arm/moth
