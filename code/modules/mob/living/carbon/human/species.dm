@@ -1402,7 +1402,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		to_chat(H, span_warning(upto_text[current_weight_stage]))
 	else if(current_weight_stage < old_weight_stage)
 		to_chat(H, span_notice(downfrom_text[old_weight_stage]))
-	else if(!force)
+	else
 		return
 
 	H.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/fatness, multiplicative_slowdown = WEIGHT_STAGE_RAW(H.overeatduration) / 4)
