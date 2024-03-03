@@ -1396,8 +1396,28 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/current_weight_stage = WEIGHT_STAGE(H.overeatduration)
 	var/old_weight_stage = WEIGHT_STAGE(old_overeatduration)
 
-	var/static/list/upto_text = list("You suddenly feel a bit pudgy!", "You feel even plumper!", "Your straining clothes creak quietly...", "You feel like you're getting really heavy.", "You can't help but feel your thighs rubbing together...", "You feel your belly resting heavily on your lap.", "You feel your gut wobble with each step you take.", "You feel your belly smush against the floor!", "You feel like you've become a mountain of fat!")
-	var/static/list/downfrom_text = list("The extra softness seems to have left your body.", "You feel like you've lost weight.", "You feel lighter.", "You feel a bit less fat.", "You feel a bit less fat.", "You feel a bit less fat.", "You feel less restrained by your fat.", "You can finally lift your gut off of the floor again.", "You feel like you're regained some mobility.")
+	var/static/list/upto_text = list(
+		"You suddenly feel a bit pudgy!",
+		"Your clothes begin to cling to your softening body...",
+		"Your already straining clothes creak quietly, fat spilling out where it can...",
+		"You can't help but feel your thighs rubbing together...",
+		"Every part of you seems to have a layer of soft fat, squishing and jiggling with every movement...",
+		"You feel your belly resting heavily against the front of your fattened thighs.",
+		"You feel your fat gut wobble with each step you take.",
+		"You feel your belly smush against the floor!",
+		"Your entire fat-laden body seems to jiggle with even the slightest movement..."
+	)
+	var/static/list/downfrom_text = list(
+		"The extra softness seems to have left your body.",
+		"You feel like you've lost weight.",
+		"You feel lighter.",
+		"You feel a bit less fat.",
+		"You feel a bit less fat.",
+		"You feel a bit less fat.",
+		"You feel less restrained by your fat.",
+		"You can finally lift your gut off of the floor again.",
+		"You feel like you're regained some mobility."
+	)
 	if(current_weight_stage > old_weight_stage)
 		to_chat(H, span_warning(upto_text[current_weight_stage]))
 	else if(current_weight_stage < old_weight_stage)

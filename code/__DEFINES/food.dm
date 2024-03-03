@@ -53,8 +53,8 @@
 
 #define STOP_SERVING_BREAKFAST (15 MINUTES)
 
-#define WEIGHT_STAGE(weight) (clamp(round(sqrt(weight / 10)), 0, 9))
-#define WEIGHT_STAGE_RAW(weight) (sqrt(weight / 10))
+#define WEIGHT_STAGE(weight) (clamp(round(sqrt(weight / 20)), 0, 9))
+#define WEIGHT_STAGE_RAW(weight) (sqrt(weight / 20))
 
 #define WEIGHT_STAGE_NORMAL 0
 #define WEIGHT_STAGE_FAT 1

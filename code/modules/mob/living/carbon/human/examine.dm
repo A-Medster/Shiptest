@@ -441,5 +441,5 @@
 	. += list(span_notice("[p_they(TRUE)] appear[p_s()] to be [age_text]."))
 
 
-	. += list(span_notice("You estimate [p_their()] weight to be about [round(150 + overeatduration, 10)]lbs."))
+	. += list(span_notice("You estimate [p_their()] weight to be about [round(150 + overeatduration / 2, 10)]lbs."))
 
