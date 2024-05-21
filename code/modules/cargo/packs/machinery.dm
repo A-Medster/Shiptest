@@ -18,33 +18,35 @@
 
 /datum/supply_pack/machinery/t1
 	name = "T1 parts crate"
-	desc = "A bundle of basic machine parts, containing 3 of each common part type."
-	cost = 1500
+	desc = "A bundle of basic machine parts, containing 3 of each common part type for when you're too lazy to print them yourself."
+	cost = 500
 	contains = list(/obj/item/storage/box/stockparts/basic)
-	crate_name = "\improper T2 parts crate"
+	crate_name = "\improper stock parts crate"
 	crate_type = /obj/structure/closet/crate
 
 /datum/supply_pack/machinery/t2
 	name = "T2 parts crate"
 	desc = "A bundle of advanced machine parts, containing 2 of each common part type."
-	cost = 5000
+	cost = 1500
 	contains = list(/obj/item/storage/box/stockparts/t2)
-	crate_name = "\improper T2 parts crate"
+	crate_name = "\improper stock parts crate"
 	crate_type = /obj/structure/closet/crate/science
 
 /datum/supply_pack/machinery/t3
 	name = "T3 parts crate"
 	desc = "A bundle of high-tech machine parts, containing 2 of each common part type."
-	cost = 13000
+	cost = 3000
 	contains = list(/obj/item/storage/box/stockparts/t3)
-	crate_name = "\improper T3 parts crate"
+	crate_name = "\improper stock parts crate"
 	crate_type = /obj/structure/closet/crate/secure/science
 
 /datum/supply_pack/machinery/power
 	name = "Power Cell Crate"
-	desc = "Looking for power overwhelming? Look no further. Contains three high-voltage power cells."
+	desc = "Looking for power overwhelming? Look no further. Contains five high-voltage power cells."
 	cost = 1000
 	contains = list(/obj/item/stock_parts/cell/high,
+					/obj/item/stock_parts/cell/high,
+					/obj/item/stock_parts/cell/high,
 					/obj/item/stock_parts/cell/high,
 					/obj/item/stock_parts/cell/high)
 	crate_name = "power cell crate"
@@ -134,6 +136,14 @@
 		Miscellaneous machines
 */
 
+/datum/supply_pack/machinery/gravgen
+	name = "Ship-Portable Gravity Generator Crate"
+	desc = "For those tired of their tools floating away from them. Contains a single gravity generator."
+	cost = 2000
+	contains = list(/obj/machinery/power/ship_gravity/unanchored)
+	crate_name = "gravity generator crate"
+	crate_type = /obj/structure/closet/crate/engineering/electrical
+
 /datum/supply_pack/machinery/breach_shield_gen
 	name = "Anti-breach Shield Projector Crate"
 	desc = "Hull breaches again? Say no more with the Nanotrasen Anti-Breach Shield Projector! Uses forcefield technology to keep the air in, and the space out. Contains two shield projectors."
@@ -166,7 +176,7 @@
 /datum/supply_pack/machinery/blackmarket_telepad
 	name = "Black Market LTSRBT"
 	desc = "Need a faster and better way of transporting your illegal goods from and to the sector? Fear not, the Long-To-Short-Range-Bluespace-Transceiver (LTSRBT for short) is here to help. Contains a LTSRBT circuit, two bluespace crystals, and one ansible."
-	cost = 5000
+	cost = 1000
 	contains = list(
 		/obj/item/circuitboard/machine/ltsrbt,
 		/obj/item/stack/ore/bluespace_crystal/artificial,
